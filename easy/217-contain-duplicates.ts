@@ -33,7 +33,7 @@ function containsDuplicateBruteForce(nums: number[]): boolean {
 }
 
 // NOTE: Time complexity is = O(n2)
-// NOTE: Space complexity is = 2n
+// NOTE: Space complexity is = 0(1)
 console.log(containsDuplicateBruteForce([1, 2, 3, 2])); // true
 console.log(containsDuplicateBruteForce([1, 2, 3, 4])); // false
 console.log(containsDuplicateBruteForce([0, 0])); // true (handles zero correctly)
