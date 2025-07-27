@@ -1,4 +1,3 @@
-// NOTE: Topics are Array, Hash Table and Sorting
 function isAnagramBruteForce(s: string, t: string): boolean {
   if (s.length !== t.length) {
     return false;
@@ -55,21 +54,3 @@ function isAnagram(s: string, t: string): boolean {
   const sortedT = t.split("").sort().join("");
   return sortedS === sortedT;
 }
-
-console.log("--- Brute Force ---");
-console.log(isAnagramBruteForce("anagram", "nagaram")); // true
-console.log(isAnagramBruteForce("rat", "car")); // false
-console.log(isAnagramBruteForce("listen", "silent")); // true
-console.log(isAnagramBruteForce("apple", "apply")); // false
-
-console.log("--- With Map ---");
-console.log(isAnagramWithMap("anagram", "nagaram")); // true
-console.log(isAnagramWithMap("rat", "car")); // false
-console.log(isAnagramWithMap("listen", "silent")); // true
-console.log(isAnagramWithMap("apple", "apply")); // false
-
-console.log("--- With Sort ---");
-console.log(isAnagram("anagram", "nagaram")); // true
-console.log(isAnagram("rat", "car")); // false
-console.log(isAnagram("listen", "silent")); // true
-console.log(isAnagram("apple", "apply")); // false
