@@ -1,6 +1,7 @@
 function twoSumBruteForce(nums: number[], target: number): number[] {
   let twoSumIndex: number[] = [];
 
+  // HACK: Stop outer loop from inner loop
   outerLoop: for (let i = 0; i < nums.length; i++) {
     for (let j = i + 1; j < nums.length; j++) {
       if (nums[i] + nums[j] === target) {
@@ -13,6 +14,7 @@ function twoSumBruteForce(nums: number[], target: number): number[] {
   return twoSumIndex;
 }
 
+// HACK: One pass / Hash map
 function twoSum(nums: number[], target: number): number[] {
   const cachedNumbers: Map<number, number> = new Map();
 

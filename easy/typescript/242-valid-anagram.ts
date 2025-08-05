@@ -1,4 +1,35 @@
-function isAnagramBruteForce(s: string, t: string): boolean {
+// HACK: One pass / Hash map
+function isAnagram(s: string, t: string): boolean {
+  if (s.length !== t.length) {
+    return false;
+  }
+
+  const charCounts = new Map<string, number>();
+
+  for (const char of s) {
+    const count = (charCounts.get(char) || 0) + 1;
+    charCounts.set(char, count);
+  }
+
+  for (const char of t) {
+    const count = charCounts.get(char);
+    if (!count) {
+      return false;
+    }
+
+    charCounts.set(char, count - 1);
+  }
+
+  return true;
+}
+
+function isAnagram1(s: string, t: string): boolean {
+  const sortedS = s.split("").sort().join("");
+  const sortedT = t.split("").sort().join("");
+  return sortedS === sortedT;
+}
+
+function isAnagram2(s: string, t: string): boolean {
   if (s.length !== t.length) {
     return false;
   }
@@ -23,34 +54,4 @@ function isAnagramBruteForce(s: string, t: string): boolean {
   }
 
   return true;
-}
-
-function isAnagramWithMap(s: string, t: string): boolean {
-  if (s.length !== t.length) {
-    return false;
-  }
-
-  const charCounts = new Map<string, number>();
-
-  for (const char of s) {
-    const count = (charCounts.get(char) || 0) + 1;
-    charCounts.set(char, count);
-  }
-
-  for (const char of t) {
-    const count = charCounts.get(char);
-    if (!count) {
-      return false;
-    }
-
-    charCounts.set(char, count - 1);
-  }
-
-  return true;
-}
-
-function isAnagram(s: string, t: string): boolean {
-  const sortedS = s.split("").sort().join("");
-  const sortedT = t.split("").sort().join("");
-  return sortedS === sortedT;
 }
