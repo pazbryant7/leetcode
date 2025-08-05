@@ -1,3 +1,4 @@
+// HACK: One pass / Hash map
 function containsDuplicateWithSet(nums: number[]): boolean {
   const seen = new Set<number>();
 
@@ -12,7 +13,7 @@ function containsDuplicateWithSet(nums: number[]): boolean {
 }
 
 function containsDuplicate(nums: number[]): boolean {
-  const seen: { [index: number]: boolean } = {};
+  const seen: { [index: string]: boolean } = {};
   for (let i = 0; i < nums.length; i++) {
     const num = nums[i];
     if (seen[num]) {
