@@ -24,12 +24,32 @@ function isAnagram(s: string, t: string): boolean {
 }
 
 function isAnagram1(s: string, t: string): boolean {
+  if (s.length !== t.length) return false;
+
+  const sc: { [char: string]: number } = {};
+
+  for (const char of s) {
+    sc[char] = sc[char] + 1 || 1;
+  }
+
+  for (const char of t) {
+    if (sc[char]) {
+      sc[char]--;
+    } else {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function isAnagram2(s: string, t: string): boolean {
   const sortedS = s.split("").sort().join("");
   const sortedT = t.split("").sort().join("");
   return sortedS === sortedT;
 }
 
-function isAnagram2(s: string, t: string): boolean {
+function isAnagram3(s: string, t: string): boolean {
   if (s.length !== t.length) {
     return false;
   }
