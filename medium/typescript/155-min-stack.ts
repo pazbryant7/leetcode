@@ -3,10 +3,9 @@ class MinStack {
   private min: number[] = [];
 
   push(val: number): void {
-    this.stack.push(val);
-
     const min = this.min.length === 0 ? val : Math.min(val, this.getMin());
 
+    this.stack.push(val);
     this.min.push(min);
   }
 
@@ -25,11 +24,3 @@ class MinStack {
 }
 
 const stack = new MinStack();
-
-stack.push(1);
-stack.push(2);
-stack.push(3);
-console.log(stack.getMin());
-stack.pop();
-console.log(stack.top());
-console.log(stack.getMin());
