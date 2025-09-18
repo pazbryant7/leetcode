@@ -1,4 +1,26 @@
 function groupAnagrams(strs: string[]): string[][] {
+  const anagramGroups = new Map();
+
+  for (const str of strs) {
+    const count = new Array(26).fill(0);
+
+    for (const char of str) {
+      const index = char.charCodeAt(0) - "a".charCodeAt(0);
+      count[index]++;
+    }
+
+    const key = count.join("#");
+
+    if (!anagramGroups.has(key)) {
+      anagramGroups.set(key, []);
+    }
+    anagramGroups.get(key).push(str);
+  }
+
+  return Array.from(anagramGroups.values());
+}
+
+function groupAnagrams1(strs: string[]): string[][] {
   const anagramGroups = new Map<string, string[]>();
 
   for (const str of strs) {
@@ -12,20 +34,4 @@ function groupAnagrams(strs: string[]): string[][] {
   }
 
   return Array.from(anagramGroups.values());
-}
-
-function groupAnagrams1(strs: string[]): string[][] {
-  const groupAnagrams: { [key: string]: string[] } = {};
-
-  for (const str of strs) {
-    const sortedArray = str.split("").sort().join("");
-
-    if (groupAnagrams[sortedArray]) {
-      groupAnagrams[sortedArray].push(str);
-    } else {
-      groupAnagrams[sortedArray] = [str];
-    }
-  }
-
-  return Object.values(groupAnagrams);
 }
