@@ -1,27 +1,30 @@
-import collections
-
-
 class Solution:
-    def isValidSudoku(self, board):
-        """
-        :type board: List[List[str]]
-        :rtype: bool
-        """
-        cols = collections.defaultdict(set)
-        rows = collections.defaultdict(set)
-        squares = collections.defaultdict(set)
+    def isValidSudoku(self, board: list[list[str]]) -> bool:
+        rows: dict[int, set[str]] = {}
+        cols: dict[int, set[str]] = {}
+        squares: dict[tuple, set[str]] = {}
 
         for r in range(9):
             for c in range(9):
-                if board[r][c] == ".":
+                val = board[r][c]
+
+                if val == ".":
                     continue
-                if (
-                    board[r][c] in rows[r]
-                    or board[r][c] in cols[c]
-                    or board[r][c] in squares[(r // 3, c // 3)]
-                ):
+
+                if r not in rows:
+                    rows[r] = set()
+                if c not in cols:
+                    cols[c] = set()
+
+                square_key = (r // 3, c // 3)
+                if square_key not in squares:
+                    squares[square_key] = set()
+
+                if val in rows[r] or val in cols[c] or val in squares[square_key]:
                     return False
-                cols[c].add(board[r][c])
-                rows[r].add(board[r][c])
-                squares[(r // 3, c // 3)].add(board[r][c])
+
+                rows[r].add(val)
+                cols[c].add(val)
+                squares[square_key].add(val)
+
         return True
